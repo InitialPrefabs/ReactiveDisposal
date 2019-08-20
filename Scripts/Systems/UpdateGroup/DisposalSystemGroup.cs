@@ -6,7 +6,7 @@ namespace Reactive {
     /// Trigger any kind of entity destruction.
     /// </summary>
     [UpdateInGroup(typeof(PresentationSystemGroup))]
-    public class DisposalTriggerGroup { }
+    public class DisposalTriggerGroup : ComponentSystemGroup { }
 
     /// <summary>
     /// The system group that will actually run and schedule the destruction of whatever entity and dispose any kind of 

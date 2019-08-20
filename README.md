@@ -19,3 +19,9 @@ Simply clone this project as a submodule into your git repository.
 ```
 git submodule add https://github.com/InitialPrefabs/ReactiveDisposal.git <path-to-desired-directory>
 ```
+
+## General TODOs
+
+* [ ] Implement unit tests on all reactive systems
+* [ ] Implement unit tests on all blob data structures
+* [ ] Implement play mode tests so that there are some safety integration tests no runtime.

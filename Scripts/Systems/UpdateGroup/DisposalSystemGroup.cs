@@ -1,10 +1,17 @@
-﻿using System.Collections.Generic;
 using Unity.Entities;
-using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace Reactive {
 
+    /// <summary>
+    /// Trigger any kind of entity destruction.
+    /// </summary>
     [UpdateInGroup(typeof(PresentationSystemGroup))]
+    public class DisposalTriggerGroup { }
+
+    /// <summary>
+    /// The system group that will actually run and schedule the destruction of whatever entity and dispose any kind of 
+    /// unmanaged memory.
+    /// </summary>
+    [UpdateInGroup(typeof(PresentationSystemGroup)), UpdateAfter(typeof(DisposalGroup))]
     public class DisposalGroup : ComponentSystemGroup { }
 }

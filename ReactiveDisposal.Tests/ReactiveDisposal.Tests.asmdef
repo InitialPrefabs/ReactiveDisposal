@@ -1,14 +1,15 @@
 {
     "name": "ReactiveDisposal.Tests",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
+        "ReactiveDisposal",
         "Unity.Collections",
         "Unity.Entities",
-        "Unity.Entities.Hybrid",
+        "Unity.Entities.Tests",
         "Unity.Jobs",
         "Unity.Mathematics",
-        "Unity.Transforms"
+        "Unity.Transforms",
+        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner"
     ],
     "includePlatforms": [
         "Editor"

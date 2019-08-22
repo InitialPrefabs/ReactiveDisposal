@@ -7,11 +7,11 @@ using System;
 using static UnityEngine.Debug;
 #endif
 
-namespace Reactive.Unmanaged.Systems {
+namespace ReactiveDisposal.Unmanaged.Systems {
 
     [UpdateInGroup(typeof(DisposalGroup))]
     public abstract class ReactiveDisposalSystem<T> : JobComponentSystem where T : struct, ISystemStateComponentData,
-           IDisposable {
+       IDisposable {
 
         [ExcludeComponent(typeof(UnmanagedMemTag))]
         public struct DisposalJob : IJobForEachWithEntity<T> {

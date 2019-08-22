@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace Reactive {
+namespace ReactiveDisposal {
 
     /// <summary>
     /// Trigger any kind of entity destruction.

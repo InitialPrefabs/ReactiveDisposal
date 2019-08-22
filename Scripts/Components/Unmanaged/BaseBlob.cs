@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Entities;
 
-namespace Reactive.Unmanaged {
+namespace ReactiveDisposal.Unmanaged {
 
     /// <summary>
     /// Allows a MonoBehaviour to construct Blob structures with the correct minimal archetype. Blobs 

@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace Reactive.Unmanaged {
+namespace ReactiveDisposal.Unmanaged {
 
     /// <summary>
     /// This is a tag component to ensure that any entities with unmanaged memory must be managed 

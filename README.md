@@ -14,17 +14,24 @@ with something that is honestly just pure data. This also makes the project very
 and destroyed into their entity format, are now injected and persistent thus taking up more memory within the game.
 
 ## Install Guide ##
+
+### As a submodule ###
+
 Simply clone this project as a submodule into your git repository.
 
 ```
 git submodule add https://github.com/InitialPrefabs/ReactiveDisposal.git <path-to-desired-directory>
 ```
 
-***Support for package manager installation is coming soon!***
+### As a Unity Package
+Add this line to `Packages/manifest.json`
+
+* `"com.initialprefabs.reactive-disposal": "git://github.com/InitialPrefabs/ReactiveDisposal"`
 
 ## General TODOs
 
-* [ ] Implement unit tests on all reactive systems
-* [ ] Implement unit tests on all blob data structures
+* [x] Implement unit tests on all reactive systems
+* [x] Implement unit tests on all blob data structures
 * [ ] Implement play mode tests so that there are some safety integration tests no runtime
-* [ ] Write wiki
+* [x] Write wiki
+* [x] Add package support

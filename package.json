@@ -4,5 +4,8 @@
   "displayName": "Reactive Disposal",
   "version":     "2019.8.0",
   "unity":       "2019.2",
-  "description": "Manage unmanaged memory in ECS"
+  "description": "Manage unmanaged memory in ECS",
+  "dependencies" : {
+    "com.unity.entities" : "0.0.12-preview.33"
+  }
 }

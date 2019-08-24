@@ -26,7 +26,7 @@ git submodule add https://github.com/InitialPrefabs/ReactiveDisposal.git <path-t
 ### As a Unity Package
 Add this line to `Packages/manifest.json`
 
-* `"com.initialprefabs.reactive-disposal": "git://github.com/InitialPrefabs/ReactiveDisposal"`
+* `"com.initialprefabs.reactive-disposal": "git://github.com/InitialPrefabs/ReactiveDisposal.git"`
 
 ## General TODOs
 

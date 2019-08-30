@@ -3,7 +3,7 @@
 Reactive Disposal is a small utility to help manage unmanaged/unsafe memory in Unity's Entity Component System. This 
 takes advantage of `ISystemStateComponentData` alongside `IComponentData` on unmanaged memory.
 
-For the difference between the two, please take a look [here](https://docs.unity3d.com/Packages/com.unity.entities@0.0/manual/system_state_components.html);
+For the difference between the two, please take a look [here](https://docs.unity3d.com/Packages/com.unity.entities@0.0/manual/system_state_components.html).
 
 ## Use Cases ##
 Because `ISystemStateComponentData` have different lifetimes compared to `IComponentData`, all unmanaged memory must be 
@@ -22,11 +22,13 @@ Simply clone this project as a submodule into your git repository.
 ```
 git submodule add https://github.com/InitialPrefabs/ReactiveDisposal.git <path-to-desired-directory>
 ```
-
 ### As a Unity Package
 Add this line to `Packages/manifest.json`
 
 * `"com.initialprefabs.reactive-disposal": "git://github.com/InitialPrefabs/ReactiveDisposal.git"`
+
+## Docs ##
+Jump over to the [wiki](https://github.com/InitialPrefabs/ReactiveDisposal/wiki) for more detailed info!
 
 ## General TODOs
 

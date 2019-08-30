@@ -3,7 +3,7 @@ using Unity.Entities;
 namespace ReactiveDisposal {
 
     /// <summary>
-    /// Trigger any kind of entity destruction.
+    /// Trigger any kind of entity destruction in this group.
     /// </summary>
     [UpdateInGroup(typeof(PresentationSystemGroup))]
     public class DisposalTriggerGroup : ComponentSystemGroup { }

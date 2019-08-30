@@ -19,6 +19,7 @@ namespace ReactiveDisposal.Unmanaged {
         /// </summary>
         protected abstract BlobAssetReference<T> ConstructBlob();
 
-        protected abstract void AttachToEntity(Entity e, EntityManager dstManager, GameObjectConversionSystem conversionSystem);
+        protected abstract void AttachToEntity(Entity e, EntityManager dstManager, 
+            GameObjectConversionSystem conversionSystem);
     }
 }

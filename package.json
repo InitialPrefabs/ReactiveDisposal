@@ -2,7 +2,7 @@
   "name":        "com.initialprefabs.reactive-disposal",
   "author":      "Porrith Suong / initialPrefabs",
   "displayName": "Reactive Disposal",
-  "version":     "2019.8.1",
+  "version":     "2019.9.0",
   "unity":       "2019.2",
   "description": "Manage unmanaged memory in ECS",
   "dependencies" : {

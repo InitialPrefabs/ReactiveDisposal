@@ -3,10 +3,6 @@ using Unity.Entities;
 using Unity.Jobs;
 using System;
 
-#if ENABLE_VALIDATION
-using static UnityEngine.Debug;
-#endif
-
 namespace ReactiveDisposal.Unmanaged.Systems {
 
     /// <summary>
@@ -25,14 +21,11 @@ namespace ReactiveDisposal.Unmanaged.Systems {
         public struct DisposalJob : IJobForEachWithEntity<T> {
 
             [ReadOnly]
-            public EntityCommandBuffer CmdBuffer;
+            public EntityCommandBuffer.Concurrent CmdBuffer;
 
             public void Execute(Entity entity, int index, ref T c0) {
-#if ENABLE_VALIDATION
-                Log($"Disposing unmanaged memory of Type: {c0.GetType()} from Entity: {entity.Index}");
-#endif
                 c0.Dispose();
-                CmdBuffer.RemoveComponent(entity, typeof(T));
+                CmdBuffer.RemoveComponent(index, entity, typeof(T));
             }
         }
 
@@ -54,7 +47,7 @@ namespace ReactiveDisposal.Unmanaged.Systems {
         /// <returns>A JobHandle with the information of when to run the job.</returns>
         protected JobHandle ScheduleDisposalJob(JobHandle inputDeps) {
             var job = new DisposalJob {
-                CmdBuffer = cmdBufferSystem.CreateCommandBuffer()
+                CmdBuffer = cmdBufferSystem.CreateCommandBuffer().ToConcurrent()
             }.Schedule(this);
 
             cmdBufferSystem.AddJobHandleForProducer(job);

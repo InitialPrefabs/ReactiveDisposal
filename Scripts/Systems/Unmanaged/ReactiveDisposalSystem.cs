@@ -20,7 +20,6 @@ namespace ReactiveDisposal.Unmanaged.Systems {
         [ExcludeComponent(typeof(UnmanagedMemTag))]
         public struct DisposalJob : IJobForEachWithEntity<T> {
 
-            [ReadOnly]
             public EntityCommandBuffer.Concurrent CmdBuffer;
 
             public void Execute(Entity entity, int index, ref T c0) {

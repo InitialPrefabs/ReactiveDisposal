@@ -24,7 +24,7 @@ namespace ReactiveDisposal.Unmanaged.Systems.Tests {
             }
         }
 
-        class DataDisposalSystem : ReactiveDisposalSystem<BlobData> {
+        class DataDisposalSystem : ReactiveDisposalJobSystem<BlobData> {
 
             protected override JobHandle OnUpdate(JobHandle inputDeps) {
                 return ScheduleDisposalJob(inputDeps);

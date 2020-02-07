@@ -27,7 +27,7 @@ namespace ReactiveDisposal {
         protected EntityManager.EntityManagerDebug managerDebug;
 
         public EmptySystem EmptySystem {
-            get => World.Active.GetOrCreateSystem<EmptySystem>();
+            get => World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EmptySystem>();
         }
 
         public EntityQueryBuilder Entities {
@@ -36,8 +36,8 @@ namespace ReactiveDisposal {
 
         [SetUp]
         public virtual void SetUp() {
-            previousWorld = World.Active;
-            world = World.Active = new World("Test World");
+            previousWorld = World.DefaultGameObjectInjectionWorld;
+            world = World.DefaultGameObjectInjectionWorld = new World("Test World");
 
             manager = world.EntityManager;
             managerDebug = new EntityManager.EntityManagerDebug(manager);
@@ -55,7 +55,7 @@ namespace ReactiveDisposal {
                 world.Dispose();
                 world = null;
 
-                World.Active = previousWorld;
+                World.DefaultGameObjectInjectionWorld = previousWorld;
                 previousWorld = null;
                 manager = null;
             }

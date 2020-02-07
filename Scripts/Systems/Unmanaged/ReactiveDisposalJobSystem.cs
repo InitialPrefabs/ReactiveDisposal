@@ -13,12 +13,7 @@ namespace ReactiveDisposal.Unmanaged.Systems {
     public abstract class ReactiveDisposalJobSystem<T> : JobComponentSystem where T : struct, ISystemStateComponentData,
        IDisposable {
 
-        /// <summary>
-        /// The primary disposal job to run which uses an EntityCommandBuffer to finalize the entity's destruction by 
-        /// removing a tag.
-        /// </summary>
-        [ExcludeComponent(typeof(UnmanagedMemTag))]
-        public struct DisposalJob : IJobForEachWithEntity<T> {
+        private struct DisposalJob : IJobForEachWithEntity<T> {
 
             public EntityCommandBuffer.Concurrent CmdBuffer;
 
@@ -29,9 +24,14 @@ namespace ReactiveDisposal.Unmanaged.Systems {
         }
 
         protected BeginPresentationEntityCommandBufferSystem cmdBufferSystem;
+        protected EntityQuery disposalGroup;
 
         protected override void OnCreate() {
-            cmdBufferSystem = World.Active.GetOrCreateSystem<BeginPresentationEntityCommandBufferSystem>();
+            cmdBufferSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<BeginPresentationEntityCommandBufferSystem>();
+            disposalGroup = GetEntityQuery(new EntityQueryDesc {
+                All = new ComponentType[] { typeof(T) },
+                None = new ComponentType[] { typeof(UnmanagedMemTag) }
+            });
         }
 
         protected override void OnDestroy() {
@@ -39,18 +39,19 @@ namespace ReactiveDisposal.Unmanaged.Systems {
         }
 
         /// <summary>
-        /// Convenience function to schedule the disposal job. The subsequent job can be chained from previous jobs or 
+        /// Convenience function to schedule the disposal job. The subsequent job can be chained from previous jobs or
         /// to subsequent jobs.
         /// </summary>
         /// <param name="inputDeps">The previously scheduled job's dependency.</param>
         /// <returns>A JobHandle with the information of when to run the job.</returns>
         protected JobHandle ScheduleDisposalJob(JobHandle inputDeps) {
-            var job = new DisposalJob {
-                CmdBuffer = cmdBufferSystem.CreateCommandBuffer().ToConcurrent()
-            }.Schedule(this);
+            var cmdBuffer   = cmdBufferSystem.CreateCommandBuffer().ToConcurrent();
+            var disposalJob = new DisposalJob {
+                CmdBuffer = cmdBuffer
+            }.Schedule(disposalGroup, inputDeps);
 
-            cmdBufferSystem.AddJobHandleForProducer(job);
-            return JobHandle.CombineDependencies(inputDeps, job);
+            cmdBufferSystem.AddJobHandleForProducer(disposalJob);
+            return disposalJob;
         }
     }
 }

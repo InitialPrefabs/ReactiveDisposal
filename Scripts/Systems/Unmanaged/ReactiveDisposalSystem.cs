@@ -1,9 +1,8 @@
 using System;
 using Unity.Entities;
 
-namespace ReactiveDisposal.Unmanaged.Systems
-{
-    public abstract class ReactiveDisposalSystem<T> : ComponentSystem 
+namespace ReactiveDisposal.Unmanaged.Systems {
+    public abstract class ReactiveDisposalSystem<T> : ComponentSystem
         where T : struct, ISystemStateComponentData, IDisposable {
 
         protected void DisposeOnMainThread() {

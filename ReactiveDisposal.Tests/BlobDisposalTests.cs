@@ -47,9 +47,6 @@ namespace ReactiveDisposal.Unmanaged.Systems.Tests {
             var blobAsset = builder.CreateBlobAssetReference<Data>(Allocator.Persistent);
             builder.Dispose();
 
-            Assert.IsNotNull(blobAsset.Value.IntPtr);
-            Assert.IsNotNull(blobAsset.Value.FloatArray);
-
             return blobAsset;
         }
 
@@ -92,7 +89,7 @@ namespace ReactiveDisposal.Unmanaged.Systems.Tests {
             Assert.AreEqual(0, blobQuery.CalculateEntityCount());
 
             Assert.Catch<InvalidOperationException>(() => {
-                var ptr = blobData.Value;
+                ref var ptr = ref blobData.Value;
             });
         }
 
